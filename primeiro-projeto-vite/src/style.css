@@ -1,0 +1,375 @@
+:root {
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  color: #f4f6fb;
+  background: #101011;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --azul: #93b4ff;
+  --azul-escuro: #c6d7ff;
+  --azul-claro: #25324a;
+  --borda: #374151;
+  --texto-suave: #c0c6d1;
+  --erro: #ffb4ab;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+#app {
+  min-height: 100vh;
+  padding: 32px;
+}
+
+.painel {
+  width: min(1120px, 100%);
+  min-height: calc(100vh - 64px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  overflow: hidden;
+  background: #1f2937;
+  border: 1px solid var(--borda);
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+}
+
+.resumo {
+  padding: 34px 28px;
+  background: #182131;
+  border-right: 1px solid var(--borda);
+}
+
+.resumo h1 {
+  max-width: 220px;
+  margin: 0 0 28px;
+  color: #f7f9ff;
+  font-size: 28px;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+
+.total-geral {
+  margin-bottom: 26px;
+  padding: 20px;
+  border: 1px solid #3a4861;
+  border-radius: 14px;
+  background: var(--azul-claro);
+}
+
+.total-geral p {
+  margin: 0 0 6px;
+  color: var(--azul-escuro);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.total-geral strong {
+  display: block;
+  color: var(--azul-escuro);
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+.totais-categorias h2 {
+  margin: 0 0 12px;
+  color: #dde3ed;
+  font-size: 15px;
+}
+
+.totais-categorias ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.totais-categorias li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+  border-bottom: 1px solid var(--borda);
+  color: var(--texto-suave);
+  font-size: 14px;
+}
+
+.totais-categorias li:last-child {
+  border-bottom: 0;
+}
+
+.totais-categorias strong {
+  color: #eef2f8;
+  text-align: right;
+}
+
+.conteudo {
+  min-width: 0;
+  padding: 34px;
+}
+
+.card,
+.despesas {
+  width: 100%;
+}
+
+.card {
+  margin-bottom: 30px;
+  padding: 24px;
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  background: #202a3a;
+}
+
+.card h2,
+.despesas h2 {
+  margin: 0 0 20px;
+  color: #f7f9ff;
+  font-size: 20px;
+}
+
+#form-despesa {
+  display: grid;
+  grid-template-columns: 1.35fr 0.75fr 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.campo {
+  min-width: 0;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 7px;
+  color: #dfe5ef;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  height: 46px;
+  padding: 0 12px;
+  color: #f7f9ff;
+  background: #293548;
+  border: 1px solid #4a5668;
+  border-radius: 8px;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.campo input::placeholder {
+  color: #aab3c2;
+}
+
+.campo input:focus,
+.campo select:focus {
+  border-color: var(--azul);
+  box-shadow: 0 0 0 3px rgba(147, 180, 255, 0.18);
+}
+
+.campo input.invalido,
+.campo select.invalido {
+  border-color: var(--erro);
+}
+
+.erro {
+  display: block;
+  min-height: 19px;
+  margin-top: 5px;
+  color: var(--erro);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+#form-despesa button {
+  grid-column: 1 / -1;
+  justify-self: start;
+  min-height: 46px;
+  margin-top: 2px;
+  padding: 0 18px;
+  color: #111827;
+  background: var(--azul);
+  border: 0;
+  border-radius: 8px;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+#form-despesa button:hover {
+  background: #aec6ff;
+}
+
+#form-despesa button:focus-visible {
+  outline: 3px solid rgba(147, 180, 255, 0.35);
+  outline-offset: 3px;
+}
+
+#form-despesa button:active {
+  transform: translateY(1px);
+}
+
+.feedback {
+  grid-column: 1 / -1;
+  min-height: 18px;
+  margin: 0;
+  color: #91e6b3;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.lista-despesas {
+  display: grid;
+  gap: 10px;
+}
+
+.estado-vazio {
+  margin: 0;
+  padding: 32px 20px;
+  color: var(--texto-suave);
+  text-align: center;
+  border: 1px dashed #566174;
+  border-radius: 10px;
+  background: #1a2332;
+}
+
+.despesa {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 76px;
+  padding: 14px 16px;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  background: #202a3a;
+}
+
+.despesa-info {
+  min-width: 0;
+}
+
+.despesa h3 {
+  overflow: hidden;
+  margin: 0 0 5px;
+  color: #f7f9ff;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.categoria {
+  display: inline-block;
+  padding: 3px 8px;
+  color: var(--azul-escuro);
+  background: var(--azul-claro);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.despesa-valor {
+  flex: 0 0 auto;
+  color: #f7f9ff;
+  font-size: 17px;
+}
+
+@media (max-width: 820px) {
+  #app {
+    padding: 16px;
+  }
+
+  .painel {
+    min-height: calc(100vh - 32px);
+    grid-template-columns: 1fr;
+  }
+
+  .resumo {
+    border-right: 0;
+    border-bottom: 1px solid var(--borda);
+  }
+
+  .resumo h1 {
+    max-width: none;
+  }
+
+  .totais-categorias ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 20px;
+  }
+
+  #form-despesa {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .campo:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 560px) {
+  #app {
+    padding: 0;
+  }
+
+  .painel {
+    min-height: 100vh;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .resumo,
+  .conteudo {
+    padding: 20px;
+  }
+
+  .total-geral strong {
+    font-size: 26px;
+  }
+
+  .totais-categorias ul,
+  #form-despesa {
+    grid-template-columns: 1fr;
+  }
+
+  .campo:first-child,
+  #form-despesa button,
+  .feedback {
+    grid-column: 1;
+  }
+
+  #form-despesa button {
+    width: 100%;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .despesa {
+    align-items: flex-start;
+  }
+}
