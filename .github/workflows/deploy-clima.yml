@@ -1,4 +1,4 @@
-name: Deploy Clima to GitHub Pages
+name: Deploy projects to GitHub Pages
 
 on:
   push:
@@ -27,7 +27,9 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: Clima/vite-project/package-lock.json
+          cache-dependency-path: |
+            Clima/vite-project/package-lock.json
+            react-chat-offline/package-lock.json
 
       - name: Install dependencies
         working-directory: Clima/vite-project
@@ -37,10 +39,20 @@ jobs:
         working-directory: Clima/vite-project
         run: npm run build
 
+      - name: Install React chat dependencies
+        working-directory: react-chat-offline
+        run: npm ci
+
+      - name: Build React chat
+        working-directory: react-chat-offline
+        run: npm run build
+
       - name: Prepare Pages artifact
         run: |
           mkdir -p _site/CLIMA
           cp -R Clima/vite-project/dist/. _site/CLIMA/
+          mkdir -p _site/react-chat-offline
+          cp -R react-chat-offline/dist/. _site/react-chat-offline/
           touch _site/.nojekyll
 
       - name: Configure GitHub Pages
